@@ -32,7 +32,7 @@ class NatalController < ApplicationController
     (0..9).each do |i|
       p=Planet.new
       p.longitude=convert_longitude(long[i])
-      p.house=house[i].to_f.floor
+      p.house=house[i].to_f.floor-1
       h=House.new
       h.longitude=convert_longitude(hc[i])
       @planets.push(p)

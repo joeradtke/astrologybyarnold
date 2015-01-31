@@ -9,7 +9,6 @@ class NatalController < ApplicationController
     @birthto=@birth
     @birthplace=Birthplace.find(natal_params[:id])
     @birth=adjust_time(@birth,@birthplace)
-    @timezone=@birthplace.timezone
     @pageintro=Page.where('name=?','introduction').first
     @pageinfl=Page.where('name=?','influence').first
     @pageasp=Page.where('name=?','aspects').first
@@ -33,7 +32,7 @@ class NatalController < ApplicationController
     (0..9).each do |i|
       p=Planet.new
       p.longitude=convert_longitude(long[i])
-      p.house=house[i].to_f.floor
+      p.house=house[i].to_f.floor-1
       h=House.new
       h.longitude=convert_longitude(hc[i])
       @planets.push(p)
@@ -51,6 +50,7 @@ class NatalController < ApplicationController
       if ph!=nil
         @planethouses.push(ph)
       end
+    @house=@planethouses
     end
   end
 
