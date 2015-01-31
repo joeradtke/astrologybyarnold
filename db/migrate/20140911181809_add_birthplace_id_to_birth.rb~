@@ -1,0 +1,4 @@
+class AddBirthplaceIdToBirth < ActiveRecord::Migration
+  def change
+  end
+end

@@ -1,0 +1,7 @@
+<section class="post">
+<h2><%=@page.title%></h2>
+<%if @page.photo?%>
+<%=image_tag(@page.photo.url,:class=>"wrap",:width=>"100")%>
+<%end%>
+<p><%=@page.body%></p>
+</section>

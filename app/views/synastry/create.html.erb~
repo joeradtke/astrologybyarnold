@@ -1,0 +1,28 @@
+<p>
+  <strong>Name:</strong>
+  <%= @birth.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @birth.date %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @birthplace.city %>
+</p>
+<p>
+  <strong>Name2:</strong>
+  <%= @birth2.name %>
+</p>
+
+<p>
+  <strong>Date2:</strong>
+  <%= @birth2.date %>
+</p>
+
+<p>
+  <strong>City2:</strong>
+  <%= @birthplace2.city %>
+</p>

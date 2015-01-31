@@ -1,0 +1,39 @@
+include AstroFunctions
+include DrawingFunctions
+class Natal < ActiveRecord::Base
+
+  has_many :planets
+
+  def process(birth,birthplace)
+    self.name=birth.name
+    self.city=birthplace.city
+    self.date=adjust_time(birth,birthplace).date
+    self.id=1
+    out=eph(birth,birthplace)
+    long=long(out)
+    speed=speed(out)
+    house=house(out)
+    hc=hc(out)
+    name=Digest::SHA1.hexdigest(Time.now.to_s)
+    self.image="#{name}.jpg"
+    name2=Digest::SHA2.hexdigest(Time.now.to_s)
+    self.image2="#{name2}.jpg"
+    create_image(image,long,house,hc)
+    aspects=create_aspect_grid(image2,long,hc)
+    ascend=find_ascendant_sign(hc[0])
+    self.ascendant_id=Ascendant.where('sign_no=?',ascend).first.id
+    self.planets=[]
+    (0..9).each do |i|
+      p=Planet.new
+      p.longitude=convert_longitude(long[i])
+    #  p.house=@house[i].to_f.floor
+     # h=House.new
+     # h.longitude=convert_longitude(@hc[i])
+      self.planets.push(p)
+    #  @houses.push(h)
+    end
+    return self
+  end
+
+
+end

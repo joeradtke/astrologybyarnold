@@ -1,0 +1,2 @@
+module CompositeHelper
+end

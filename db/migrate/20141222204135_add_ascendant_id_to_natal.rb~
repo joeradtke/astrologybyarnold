@@ -1,0 +1,4 @@
+class AddAscendantIdToNatal < ActiveRecord::Migration
+  def change
+  end
+end

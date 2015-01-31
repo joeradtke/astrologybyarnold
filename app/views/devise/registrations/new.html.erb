@@ -1,0 +1,15 @@
+<div class="span10 blue">
+<h2>Register</h2>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name),:html=>{:class=>'form-horizontal blue'}) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.input :username, autofocus: true %>
+  <%= f.input :password, autocomplete: "off" %>
+  <%= f.input :password_confirmation, autocomplete: "off" %>
+  <%= f.input :email %>
+  <%= f.input :firstname%>
+  <%= f.input :lastname %>
+  <%= f.button :submit, "Register" %>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>

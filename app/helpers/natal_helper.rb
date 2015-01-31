@@ -1,0 +1,2 @@
+module NatalHelper
+end

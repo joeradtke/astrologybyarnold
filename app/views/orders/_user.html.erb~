@@ -1,0 +1,2 @@
+NAME:  <%=@order.user.firstname%> <%=@order.user.lastname%>
+EMAIL: <%=@order.user.email%>

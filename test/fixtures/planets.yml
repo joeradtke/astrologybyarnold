@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  longitude: MyString
+  house: MyString
+  sign: MyString
+  retrograde: MyString
+
+two:
+  name: MyString
+  longitude: MyString
+  house: MyString
+  sign: MyString
+  retrograde: MyString

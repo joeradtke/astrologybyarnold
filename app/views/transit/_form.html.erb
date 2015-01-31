@@ -1,0 +1,9 @@
+<%= simple_form_for(@transit, url: transit_create_path,:html=>{:class=>'form-horizontal'}) do |f| %>
+  <%=f.input :name, autofocus: true %>
+  <%=f.input :date,as: :datetime, start_year:1925,:label=>"Birth Date"%>
+  <%=f.input :id, :label=>"City" do%>
+  <%=f.select :id, Birthplace.all.map {|b| [b.city,b.id]}%>
+  <%end%>
+  <%=f.input :date2,as: :datetime,:label=>"Transit Date"%>
+  <%=f.submit%>
+<% end %>

@@ -1,0 +1,4 @@
+class AddAttachementPhotoToPage < ActiveRecord::Migration
+  def change
+  end
+end

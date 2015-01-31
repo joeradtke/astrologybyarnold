@@ -1,0 +1,13 @@
+<%=semantic_form_for [:admin,@product] do |f|%>
+  <%=f.inputs do%>
+    <%=f.input :category%>
+    <%=f.input:name%>
+    <%=f.input:short%>
+    <%=f.input:description%>
+    <%=f.input:price%>
+    <%=f.input:photo,:as=> :file%> 
+  <%end%>
+  <%=f.actions do%>
+    <%=f.action :submit,:as=>:button%>
+  <%end%>
+<%end%>

@@ -1,0 +1,4 @@
+class AddImagesToNatal < ActiveRecord::Migration
+  def change
+  end
+end

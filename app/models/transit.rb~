@@ -1,0 +1,3 @@
+class Transit < ActiveRecord::Base
+  has_many :births
+end

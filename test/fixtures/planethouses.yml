@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  planetno: 1
+  houseno: 1
+  title: MyString
+  body: MyText
+
+two:
+  planetno: 1
+  houseno: 1
+  title: MyString
+  body: MyText

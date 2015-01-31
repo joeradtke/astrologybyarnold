@@ -1,0 +1,66 @@
+<p>
+  <strong>Name:</strong>
+  <%= @birth.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @birth.date %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @birthplace.city %>
+</p>
+<p>
+  <strong>Out:</strong>
+  <%= @out %>
+</p>
+<p>
+  <strong>Out2:</strong>
+  <%= @out2 %>
+</p>
+<p>
+  <strong>Longitude:</strong>
+  <%= @long %>
+</p>
+<p>
+  <strong>Longitude2:</strong>
+  <%= @long2 %>
+</p>
+<p>
+  <strong>Speed:</strong>
+  <%= @speed %>
+</p>
+<p>
+  <strong>House:</strong>
+  <%= @house %>
+</p>
+<p>
+  <strong>House Cusps:</strong>
+  <%= @hc %>
+</p>
+<%=image_tag @image,:class=>"natal"%>
+<table width="100%" cellpadding="0" cellspacing="0" border="0"
+  <tr>
+    <td><strong> Natal </strong></td>
+    <td><strong> Longitude </strong></td>
+    <td>&nbsp;</td>
+    <td><strong> House<br>position </strong></td>
+    <td><strong> Transits </strong></td>
+    <td><strong> Longitude </strong></td>
+  </tr>
+  <%=render @planets%>
+  <tr><td> &nbsp </td><td> &nbsp </td><td> &nbsp </td><td> &nbsp </td></tr>
+  <tr>
+    <td><b> House </b></td>
+    <td><b> Longitude </b></td>
+  </tr>
+  <%=render @houses%>
+  <tr><td>&nbsp;</td></tr>
+  <tr><td>&nbsp;</td><td><strong> Aspects </strong></td></tr>
+  <%=render @aspects%>
+</table>
+<%=render @pageintro%>
+<%=render @pageaspect%>
+<%=render @aspectstexts%>

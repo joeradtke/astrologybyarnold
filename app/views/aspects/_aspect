@@ -1,0 +1,1 @@
+<tr><td><%=aspect.p1name%></td><td><%=aspect.name%></td><td><%=aspect.p2name%></td></tr>

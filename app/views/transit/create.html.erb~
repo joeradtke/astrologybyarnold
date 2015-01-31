@@ -1,0 +1,27 @@
+<p>
+  <strong>Name:</strong>
+  <%= @birth.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @birth.date %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @birthplace.city %>
+</p>
+<p>
+  <strong>Date2:</strong>
+  <%= @birth2.date %>
+</p>
+<p>
+  <strong>Out:</strong>
+  <%= @out %>
+</p>
+<p>
+  <strong>Out2:</strong>
+  <%= @out2 %>
+</p>
+<%=image_tag 'natal.jpg',:class=>"natal"%>

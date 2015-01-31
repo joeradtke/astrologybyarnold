@@ -1,0 +1,9 @@
+<h2><%=@category.name%></h2>
+<ul>
+<%@category.products.each do |product|%>
+  <li><%=link_to product.name,[@category,product]%> <p> <%=product.short%></p></li>
+  <li class="price_line"><span class="price"><%=number_to_currency(product.price)%>
+  <%=button_to "Add to Cart",line_items_path(product_id: product),:remote=>true%></li>
+<%end%>
+
+</ul>

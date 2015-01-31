@@ -1,0 +1,259 @@
+module AstroFunctions
+    extend ActiveSupport::Concern
+
+  protected
+
+  def adjust_time(birth,birthplace)
+    zone=birthplace.timezone
+    time=birth.date.strftime("%Y-%m-%d %H:%M:%S") 
+    timezone=ActiveSupport::TimeZone[zone].parse(time)
+    birth.date=Time.parse(timezone.to_s).getutc
+    birth
+  end
+
+  def eph(birth,birthplace,type="natal")
+    longitude=birthplace.longitude.to_f
+    latitude=birthplace.latitude.to_f
+    if type=="nowtransit"
+      utdatenow=Time.now.getutc.strftime("%d.%m.%Y")
+      utnow=Time.now.getutc.strftime("%H:%M:%S")
+    else
+      utdatenow=birth.date.strftime("%d.%m.%Y")
+      utnow=birth.date.strftime("%H:%M:%S")
+    end
+    h_sys="p"
+    out=`swetest -b#{utdatenow} -ut#{utnow} -p0123456789DAttt -eswe -house#{longitude},#{latitude}   -flsj, -head `
+    out=out.split(' ')
+  end
+
+  def long(out)
+    long=out.values_at(0,3,6,9,12,15,18,21,24,27,30,33,36,39,42)
+  end
+  def speed(out)
+    speed=out.values_at(1,4,7,10,13,16,19,22,25,28,31,37,40,43)
+  end
+  def house(out)
+    house=out.values_at(2,5,8,11,14,17,20,23,26,29,32,38,41)
+  end
+  def hc(out)
+    hc=out.values_at(45,47,49,51,53,55,57,59,61,63,65,67,69)
+  end
+
+
+  def sort_descending(long)
+    sort=[]
+    sort_pos=[]
+    (0..14).each do |k|
+      sort[k]=long[k]
+      sort_pos[k]=k
+    end
+    #do the actual sort
+    (0..12).each do |k|
+      (k+1..13).each do |l|
+        if sort[l]>sort[k]
+          temp=sort[k]
+          temp1=sort_pos[k]
+          sort[k]=sort[l]
+          sort_pos[k]=sort_pos[l]
+          sort[l]=temp
+          sort_pos[l]=temp1
+        end
+      end
+    end
+    ar=[sort,sort_pos]
+  end
+
+  def count_planets_in_each_house(sort,sort_pos)
+
+    # count the number of planets in each house
+    #unset any variables not initialized elsewhere in the program
+    # reset the number of planets in each house
+    # make $spot_filled times 15 (instead of 12) just to be sure (to cover overflow)
+    nopih=[]
+    (0..25).each do |k|
+      nopih[k]=0
+    end
+    #run through all the planets and see how many planets are in each house
+    (0..14).each do |k|
+      #get sign planet is in, since the sign and the house are the same
+      p_num=sort_pos[k]
+      temp=((sort[p_num].to_f/30)+1).floor
+      nopih[temp]=nopih[temp]+1
+    end
+    nopih
+  end
+
+  def reduce_below_30(long)
+    lng=long
+    while lng.to_f>=30
+      lng=lng.to_f-30
+    end
+    lng
+  end
+
+  def convert_longitude(long)
+    signs=['Ari','Tau','Gem','Can','Leo','Vir','Lib','Sco','Sag','Cap','Aqu','Pis']
+    sign_num=(long.to_f/30).floor
+    pos_in_sign=long.to_f-sign_num*30
+    deg=pos_in_sign.floor
+    full_min=(pos_in_sign-deg)*60
+    min=full_min.floor
+    full_sec=((full_min-min)*60).round
+    if deg<10
+      deg="0#{deg}"
+    end
+    if min<10
+      min="0#{min}"
+    end
+    if full_sec<10
+      full_sec="0#{full_sec}"
+    end  
+    return "#{deg} #{signs[sign_num]} #{min}' #{full_sec}#{34.chr(Encoding::UTF_8)}"
+  end
+  def find_ascendant_sign(longitude)
+    return (longitude.to_f/30).floor
+  end
+
+  def draw_aspect_lines(long,hc,sort,sort_pos,i)
+    (0..13).each do |k|
+      (k+1..14).each do |l|
+        q=0
+        da=(long[sort_pos[k]].to_f-long[sort_pos[l]].to_f).abs
+        if da>180
+          da=360-da
+        end
+        #set orb - 8 if Sun or Moon, 6 if not Sun or Moon
+        if sort_pos[k]==0 || sort_pos[k]==1 || sort_pos[l]==0 || sort_pos[l]==1
+          orb=8
+        else
+          orb=6
+ 	end
+        #is there an aspect within orb?
+        if da<=orb
+          q=1
+	  aspect_color="green"
+        elsif da<=60+orb && da>=60-orb
+          q=6
+	  aspect_color="green"
+        elsif da<=90 +orb && da>=90-orb
+          q=4 
+	  aspect_color="red"
+        elsif da<=120+orb && da>=120-orb
+          q=3
+      	  aspect_color="green"
+        elsif da<=150+orb && da>=150-orb
+          q=5
+      	  aspect_color="blue"
+        elsif da>=180-orb
+          q=2
+ 	  aspect_color="red"
+	end
+        if q>0
+          if q!=1
+            #non-conjunctions
+            x1=-150*Math.cos((sort[k].to_f-hc[0].to_f)*Math::PI/180)
+            y1=150*Math.sin((sort[k].to_f-hc[0].to_f)*Math::PI/180)
+            x2=-150*Math.cos((sort[l].to_f-hc[0].to_f)*Math::PI/180)
+            y2=150*Math.sin((sort[l].to_f-hc[0].to_f)*Math::PI/180)
+	    i.stroke(aspect_color)
+            i.line(x1+350,y1+350,x2+350,y2+350)
+      	  end
+ 	end
+      end
+    end
+    return i
+    end
+
+    def draw_planets(i,long,hc,fill="black")
+    #sort planets in descending order
+    ar=sort_descending(long)
+    sort=ar[0]
+    sort_pos=ar[1]
+    nopih=count_planets_in_each_house(sort,sort_pos)
+    house_num=0
+    spot_filled=[]
+    planets_done=0
+    (0..50).each do |k|
+      spot_filled[k]=0
+    end
+    #add planet glyphs around circle
+    flag=false
+    pglyphs=[81,87,69,82,84,89,85,73,79,80,77,96,141,60,109,90,88]
+    14.downto(0) do |k|
+    # $sort() holds longitudes in descending order from 360 down to 0
+    # $sort_pos() holds the planet number corresponding to that longitude
+      temp=house_num
+      house_num=((sort[k].to_f/30)+1).floor      # get house (sign) planet is in
+
+      if temp!=house_num
+      # this planet is in a different house than the last one - this planet is the first one in this house, in other words
+        planets_done=1
+      end
+      # get index for this planet as to where it should be in the possible xx different positions around the wheel
+      from_cusp=reduce_below_30(sort[k])
+      if ((from_cusp.to_f>=360-1/36000) && (from_cusp.to_f<=360+1/36000))   
+        from_cusp=0
+      end
+      indexy=(from_cusp.to_f*5/30).floor
+      # adjust the index as needed based on other planets in the same house, etc.
+      if indexy>=5-nopih[house_num]
+        if 5-indexy-nopih[house_num]+planets_done<=0
+          if indexy-nopih[house_num]+planets_done<0
+            indexy=5-nopih[house_num]
+          else
+            if spot_filled[(house_num-1)*5+indexy]==0
+              indexy=5-nopih[house_num]+planets_done-1
+            else
+              indexy=5-nopih[house_num]
+            end
+          end
+        end
+      end
+
+      if indexy<0
+        indexy=0
+      end
+
+      # see if this spot around the wheel has already been filled
+      while spot_filled[(house_num - 1)*5+indexy]==1
+        # yes, so push the planet up one position
+        indexy=indexy+1
+      end
+       #mark this position as being filled
+      spot_filled[(house_num - 1)*5+indexy]=1
+      # set the final index
+      chart_idx=(house_num-1)*5+indexy
+      planet_angle=[]
+
+      planet_angle[sort_pos[k]]=sort[k]
+
+      angle_to_use=Math::PI/180*(planet_angle[sort_pos[k]].to_f-hc[0].to_f)
+	#needed for placing info on chartwheel
+      # denote that we have done at least one planet in this house (actually count the planets in this house that we have done)
+      planets_done=planets_done+1
+
+      # display the planet in the wheel
+      if flag==false
+        xy=display_planet_glyph(angle_to_use, 210)
+      else
+        xy=display_planet_glyph(angle_to_use, 192)
+      end
+      i.fill(fill)
+      i.text(xy[0]+350,xy[1]+350,pglyphs[sort_pos[k]].chr(Encoding::UTF_8))
+      #draw line from planet to circumference
+      if flag==false
+        x1=-238*Math.cos(angle_to_use)
+        y1=238*Math.sin(angle_to_use)
+        x2=-244*Math.cos(angle_to_use)
+        y2=244*Math.sin(angle_to_use)
+      else
+        x1=-222*Math.cos(angle_to_use)
+        y1=222*Math.sin(angle_to_use)
+        x2=-244*Math.cos(angle_to_use)
+        y2=244*Math.sin(angle_to_use)
+      end
+      i.line(x1+350,y1+350,x2+350,y2+350)
+    end
+    return i
+  end
+end
