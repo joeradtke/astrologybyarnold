@@ -38,7 +38,17 @@ module AstroFunctions
   def hc(out)
     hc=out.values_at(45,47,49,51,53,55,57,59,61,63,65,67,69)
   end
-
+  
+  def getplanets(long,house)
+    planets=[]
+    (0..9).each do |i|
+      p=Planet.new
+      p.longitude=convert_longitude(long[i])
+      p.house=house[i].to_f.floor-1
+      planets.push(p)
+      planets
+    end
+  end
 
   def sort_descending(long)
     sort=[]
@@ -292,7 +302,7 @@ module AstroFunctions
 	name=re[1]
 	if name!=nil
 	  a=Aspecttext.where("pn1=? AND pn2=? AND name=?",k,l,name).first
-	  if a!=nil and a!=[]
+	  if a!=nil 
 	    aspecttexts.push(a)
           end
 	end

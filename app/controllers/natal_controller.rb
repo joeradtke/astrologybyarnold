@@ -5,20 +5,17 @@ class NatalController < ApplicationController
   end
 
   def create
-    @birth=Birth.new(natal_params)
-    @birthto=@birth
+    birth=Birth.new(natal_params)
     @birthplace=Birthplace.find(natal_params[:id])
-    @birth=adjust_time(@birth,@birthplace)
+    @birth=adjust_time(birth,@birthplace)
     @pageintro=Page.where('name=?','introduction').first
     @pageinfl=Page.where('name=?','influence').first
     @pageasp=Page.where('name=?','aspects').first
     out=eph(@birth,@birthplace)
-    @out=out
     long=long(out)
     speed=speed(out)
     house=house(out)
     hc=hc(out)
-    @hc=hc
     name=Digest::SHA1.hexdigest(Time.now.to_s)
     @image="#{name}.jpg"
     name2=Digest::SHA2.hexdigest(Time.now.to_s)
@@ -28,15 +25,11 @@ class NatalController < ApplicationController
     ascend=find_ascendant_sign(hc[0])
     @ascendant=Ascendant.where('sign_no=?',ascend)
     @planets=[]
-    @houses=[]
     (0..9).each do |i|
       p=Planet.new
       p.longitude=convert_longitude(long[i])
       p.house=house[i].to_f.floor-1
-      h=House.new
-      h.longitude=convert_longitude(hc[i])
       @planets.push(p)
-      @houses.push(h)
     end
     @planetsigns=[]
     @planethouses=[]

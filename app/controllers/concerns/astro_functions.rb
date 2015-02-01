@@ -39,7 +39,6 @@ module AstroFunctions
     hc=out.values_at(45,47,49,51,53,55,57,59,61,63,65,67,69)
   end
 
-
   def sort_descending(long)
     sort=[]
     sort_pos=[]
