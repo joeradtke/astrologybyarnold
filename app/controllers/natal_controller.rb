@@ -10,6 +10,7 @@ class NatalController < ApplicationController
     @birth=adjust_time(birth,@birthplace)
     @pageintro=Page.where('name=?','introduction').first
     @pageinfl=Page.where('name=?','influence').first
+    @pagehouse=Page.where('name=?','houses').first
     @pageasp=Page.where('name=?','aspects').first
     out=eph(@birth,@birthplace)
     long=long(out)
@@ -44,6 +45,7 @@ class NatalController < ApplicationController
         @planethouses.push(ph)
       end
     @aspecttexts=findaspecttext(long)
+    @aspectatexts=findaspectatext(long,hc)
     end
   end
 

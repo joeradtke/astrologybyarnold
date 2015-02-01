@@ -299,4 +299,30 @@ module AstroFunctions
     end
     aspecttexts
   end
+
+  def findaspectatext(long,hc)
+    aspectatexts=[]
+    (0..9).each do |k|
+      q=0
+      name=""
+      da=(long[k].to_f-hc[0].to_f).abs
+      if da>180
+	da=360-da
+      end
+      if k==0 or k==1
+        orb=8
+      else
+	orb=6
+      end 
+      re=calcaspect(da,orb)
+      name=re[1]
+      if name!=nil
+	a=Aspectatext.where("pn=? AND name=?",k,name).first
+	if a!=nil 
+	  aspectatexts.push(a)
+        end
+      end
+    end
+    aspectatexts
+  end
 end

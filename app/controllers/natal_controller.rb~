@@ -24,7 +24,13 @@ class NatalController < ApplicationController
     aspects=create_aspect_grid(@image2,long,hc)
     ascend=find_ascendant_sign(hc[0])
     @ascendant=Ascendant.where('sign_no=?',ascend)
-    @planets=getplanets(long,house)
+    @planets=[]
+    (0..9).each do |i|
+      p=Planet.new
+      p.longitude=convert_longitude(long[i])
+      p.house=house[i].to_f.floor-1
+      @planets.push(p)
+    end
     @planetsigns=[]
     @planethouses=[]
     (0..9).each do |i|
@@ -38,6 +44,7 @@ class NatalController < ApplicationController
         @planethouses.push(ph)
       end
     @aspecttexts=findaspecttext(long)
+    @aspectatexts=findaspectatext(long,hc)
     end
   end
 
