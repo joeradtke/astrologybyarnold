@@ -129,26 +129,11 @@ module AstroFunctions
           orb=6
  	end
         #is there an aspect within orb?
-        if da<=orb
-          q=1
-	  aspect_color="green"
-        elsif da<=60+orb && da>=60-orb
-          q=6
-	  aspect_color="green"
-        elsif da<=90 +orb && da>=90-orb
-          q=4 
-	  aspect_color="red"
-        elsif da<=120+orb && da>=120-orb
-          q=3
-      	  aspect_color="green"
-        elsif da<=150+orb && da>=150-orb
-          q=5
-      	  aspect_color="blue"
-        elsif da>=180-orb
-          q=2
- 	  aspect_color="red"
-	end
-        if q>0
+	re=calcaspect(da,orb)
+	q=re[0]
+	name=re[1]
+	aspect_color=re[2]
+        if name!=nil
           if q!=1
             #non-conjunctions
             x1=-150*Math.cos((sort[k].to_f-hc[0].to_f)*Math::PI/180)
@@ -162,6 +147,37 @@ module AstroFunctions
       end
     end
     return i
+    end
+
+    def calcaspect(da,orb)
+      if da<=orb
+	q=1
+	name="blending"
+	aspect_color="green"
+      elsif (da-60).abs<orb
+	q=6
+	name="harmonizing"
+	aspect_color="green"
+      elsif (da-90).abs<orb
+	q=4
+	name="discordant"
+	aspect_color="red"
+	elsif (da-120).abs<orb
+	q=3
+	name="harmonizing"
+	aspect_color="green"
+      elsif (da-150).abs<orb
+	q=5
+	name="quincux"
+	aspect_color="blue"
+      elsif (da-180).abs<orb
+	q=2
+	name="discordant"
+	aspect_color="red"
+      else
+        name=nil
+      end
+      return [q,name,aspect_color]
     end
 
     def draw_planets(i,long,hc,fill="black")
@@ -255,5 +271,33 @@ module AstroFunctions
       i.line(x1+350,y1+350,x2+350,y2+350)
     end
     return i
+  end
+
+  def findaspecttext(long)
+    aspecttexts=[]
+    (0..9).each do |k|
+      (k+1..9).each do |l|
+        q=0
+        name=""
+        da=(long[k].to_f-long[l].to_f).abs
+	if da>180
+	  da=360-da
+	end
+	if k==0 or k==1 or l==0 or l==1
+	  orb=8
+	else
+	  orb=6
+	end 
+        re=calcaspect(da,orb)
+	name=re[1]
+	if name!=nil
+	  a=Aspecttext.where("pn1=? AND pn2=? AND name=?",k,l,name).first
+	  if a!=nil 
+	    aspecttexts.push(a)
+          end
+	end
+      end
+    end
+    aspecttexts
   end
 end

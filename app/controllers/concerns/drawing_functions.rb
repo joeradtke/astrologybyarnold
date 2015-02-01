@@ -190,26 +190,10 @@ module DrawingFunctions
 	else
 	  orb=6
 	end 
-	if da<=orb
-	  q=1
-	  name="blending"
-	elsif (da-60).abs<orb
-	  q=6
-	  name="harmonizing"
-	elsif (da-90).abs<orb
-	  q=4
-	  name="discordant"
-	elsif (da-120).abs<orb
-	  q=3
-	  name="harmonizing"
-	elsif (da-150).abs<orb
-	  q=5
-	  name="quincux"
-	elsif (da-180).abs<orb
-	  q=2
-	  name="discordant"
-        end
-	if q>0
+        re=calcaspect(da,orb)
+        name=re[1]
+        q=re[0]
+	if name!=nil
 	  a.pn1=k
 	  a.pn2=l
 	  a.name=name

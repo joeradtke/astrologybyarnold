@@ -2,7 +2,6 @@ Natal Chart for <%=@birth.name%> <br/>
 born <%=@birth.date%> at <%=@birthplace.city%> <br/>
 <p>Out is <%=@out%></p>
 <p>House cusps are <%=@hc%></p>
-<p><%=@house%></p>
 <%=image_tag @image,:class=>"natal"%>
 <%=image_tag @image2,:class=>"natal"%>
 <%=render @pageintro%>
@@ -11,4 +10,6 @@ born <%=@birth.date%> at <%=@birthplace.city%> <br/>
 <%=render @planetsigns%>
 <%=render @planethouses%>
 <%=render @pageasp%>
+<p><%=@aspecttexts%></p>
+<%=@planethouses%>
 

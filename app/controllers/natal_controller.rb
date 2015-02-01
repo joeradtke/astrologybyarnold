@@ -50,6 +50,7 @@ class NatalController < ApplicationController
       if ph!=nil
         @planethouses.push(ph)
       end
+    @aspecttexts=findaspecttext(long)
     end
   end
 

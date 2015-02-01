@@ -122,7 +122,7 @@ module DrawingFunctions
     if type=="nowtransit" || type=="transit"
       draw_planets(i,long2,hc,"red")
     elsif type=="synastry"
-      draw_planets(i,long2,hc2,"blue")
+      draw_planets(i,long2,hc2,"yellow")
     end
     i.draw(canvas)
     canvas.write ("public/images/#{image}")
@@ -178,7 +178,7 @@ module DrawingFunctions
       i.text_anchor(Magick::StartAnchor)
       i.text(40+k*25,20+25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
       (k+1..13).each do |l|
-	a=Aspect.new
+	#a=Aspect.new
         q=0
         name=""
         da=(long[k].to_f-long[l].to_f).abs
@@ -190,26 +190,10 @@ module DrawingFunctions
 	else
 	  orb=6
 	end 
-	if da<=orb
-	  q=1
-	  name="blending"
-	elsif (da-60).abs<orb
-	  q=6
-	  name="harmonizing"
-	elsif (da-90).abs<orb
-	  q=4
-	  name="discordant"
-	elsif (da-120).abs<orb
-	  q=3
-	  name="harmonizing"
-	elsif (da-150).abs<orb
-	  q=5
-	  name="quincux"
-	elsif (da-180).abs<orb
-	  q=2
-	  name="discordant"
-        end
-	if q>0
+        re=calcaspect(da,orb)
+        name=re[1]
+        q=re[0]
+	if name!=nil
 	  a.pn1=k
 	  a.pn2=l
 	  a.name=name

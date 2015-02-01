@@ -41,7 +41,7 @@ class NatalController < ApplicationController
     @planetsigns=[]
     @planethouses=[]
     (0..9).each do |i|
-      sign=(long[i].to_f/30).floor-1
+      sign=(long[i].to_f/30).floor
       ps=Planetsign.where("planetno=? AND signno=?",i,sign).first
       if ps!=nil
         @planetsigns.push(ps)
@@ -50,6 +50,7 @@ class NatalController < ApplicationController
       if ph!=nil
         @planethouses.push(ph)
       end
+    @aspecttext=findaspecttext(long)
     end
   end
 
