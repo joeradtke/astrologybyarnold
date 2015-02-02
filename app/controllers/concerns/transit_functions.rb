@@ -13,18 +13,11 @@ module TransitFunctions
 	  da=360-da
 	end
 	orb=2
-	if da<=orb
-	  q=1
-	elsif (da-60).abs<orb
-	  q=6
-	elsif (da-90).abs<orb
-	  q=4
-	elsif (da-120).abs<orb
-	  q=3
-	elsif (da-150).abs<orb
-	  q=5
-	end
-	if q>0
+	re=calcaspect(da,orb)
+        if re[0]!=nil
+          q=re[0]
+        end
+	if q>0 
 	#aspect exists
 	  a.pn1=i
 	  a.pn2=k

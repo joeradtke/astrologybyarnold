@@ -1,27 +1,8 @@
-<p>
-  <strong>Name:</strong>
-  <%= @birth.name %>
-</p>
+<h3>Now Transit for <%=@birth2.date%> for <%= @birth.name %> born <%= @birth.date %> at <%= @birthplace.city %>
+</h3>
 
-<p>
-  <strong>Date:</strong>
-  <%= @birth.date %>
-</p>
 
-<p>
-  <strong>City:</strong>
-  <%= @birthplace.city %>
-</p>
-<p>
-  <strong>Date2:</strong>
-  <%= @birth2.date %>
-</p>
-<p>
-  <strong>Out:</strong>
-  <%= @out %>
-</p>
-<p>
-  <strong>Out2:</strong>
-  <%= @out2 %>
-</p>
-<%=image_tag 'natal.jpg',:class=>"natal"%>
+
+<%=image_tag @image,:class=>"natal"%>
+<p>Aspects are <%=@aspects%></p>
+<p><%=render @aspectstexts%></p>

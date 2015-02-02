@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'natal'=>'natal#new'
   post 'natal'=>'natal#create', :as=>'natal_create'
   get 'nowtransit'=>'nowtransit#new'
-
+  post 'nowtransit'=>'nowtransit#create', :as=>'nowtransit_create'
   get 'transit'=>'transit#new'
 
   get 'synastry'=>'synastry#new'
