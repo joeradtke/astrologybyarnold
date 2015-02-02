@@ -1,45 +1,5 @@
-<p>
-  <strong>Name:</strong>
-  <%= @birth.name %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @birth.date %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @birthplace.city %>
-</p>
-<p>
-  <strong>Out:</strong>
-  <%= @out %>
-</p>
-<p>
-  <strong>Out2:</strong>
-  <%= @out2 %>
-</p>
-<p>
-  <strong>Longitude:</strong>
-  <%= @long %>
-</p>
-<p>
-  <strong>Longitude2:</strong>
-  <%= @long2 %>
-</p>
-<p>
-  <strong>Speed:</strong>
-  <%= @speed %>
-</p>
-<p>
-  <strong>House:</strong>
-  <%= @house %>
-</p>
-<p>
-  <strong>House Cusps:</strong>
-  <%= @hc %>
-</p>
+<h3>Now Transit for <%= @birth.name %> born <%= @birth.date %> at <%= @birthplace.city %>
+</h3>
 <%=image_tag @image,:class=>"natal"%>
 <table width="100%" cellpadding="0" cellspacing="0" border="0"
   <tr>
