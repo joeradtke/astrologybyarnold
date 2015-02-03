@@ -1,0 +1,4 @@
+class AddLongtitude2ToHouse < ActiveRecord::Migration
+  def change
+  end
+end

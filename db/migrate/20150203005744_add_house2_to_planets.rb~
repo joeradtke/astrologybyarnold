@@ -1,0 +1,4 @@
+class AddHouse2ToPlanets < ActiveRecord::Migration
+  def change
+  end
+end

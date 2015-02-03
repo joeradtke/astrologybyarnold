@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   get 'nowtransit'=>'nowtransit#new'
   post 'nowtransit'=>'nowtransit#create', :as=>'nowtransit_create'
   get 'transit'=>'transit#new'
-
+  post 'transit'=>'transit#create', :as=>'transit_create'
   get 'synastry'=>'synastry#new'
 
   get 'composite'=>'composite#new'

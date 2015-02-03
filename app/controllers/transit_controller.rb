@@ -10,8 +10,6 @@ class TransitController < ApplicationController
     @birth=Birth.new(transit_params)
     @birthplace=Birthplace.find(transit_params[:id])
     @birth=adjust_time(@birth,@birthplace)
-   # date2=DateTime.civil_from_format(:utc,2015,3,13,9,00)
-   # @date=transit2_params["date2(1i)"]
     date2=DateTime.civil_from_format(:utc,transit2_params["date2(1i)"].to_i,transit2_params["date2(2i)"].to_i,transit2_params["date2(3i)"].to_i,transit2_params["date2(4i)"].to_i,transit2_params["date2(5i)"].to_i)
     @birth2=Birth.new(:date=>date2)
     @birth2=adjust_time(@birth2,@birthplace)

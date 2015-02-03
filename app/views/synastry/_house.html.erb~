@@ -1,0 +1,4 @@
+<tr><td><%=house.name%></td>
+<td><%=house.longitude%></td>
+<td><%=house.longitude2%></td>
+</tr>

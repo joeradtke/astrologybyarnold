@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   get 'transit'=>'transit#new'
   post 'transit'=>'transit#create', :as=>'transit_create'
   get 'synastry'=>'synastry#new'
-
+  post 'synastry'=>'synastry#create', :as=>'synastry_create'
   get 'composite'=>'composite#new'
-
+  post 'composite'=>'composite#create', :as=>'composite_create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -5,6 +5,8 @@ class TransitController < ApplicationController
   end
 
   def create
+    @pageintro=Page.where('name=?','introduction').first
+    @pageaspect=Page.where('name=?','aspects').first
     @birth=Birth.new(transit_params)
     @birthplace=Birthplace.find(transit_params[:id])
     @birth=adjust_time(@birth,@birthplace)

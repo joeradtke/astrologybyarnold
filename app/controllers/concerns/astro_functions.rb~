@@ -323,6 +323,34 @@ module AstroFunctions
         end
       end
     end
-    aspectatexts="fuck you"
+    aspectatexts
+  end
+
+  def findsynastrytests(long,long2)
+    aspecttexts=[]
+    (0..9).each do |k|
+      (k+1..9).each do |l|
+        q=0
+        name=""
+        da=(long[k].to_f-long2[l].to_f).abs
+	if da>180
+	  da=360-da
+	end
+	if k==0 or k==1 or l==0 or l==1
+	  orb=8
+	else
+	  orb=6
+	end 
+        re=calcaspect(da,orb)
+	name=re[1]
+	if name!=nil
+	  a=Aspecttext.where("pn1=? AND pn2=? AND name=?",k,l,name).first
+	  if a!=nil 
+	    aspecttexts.push(a)
+          end
+	end
+      end
+    end
+    aspecttexts
   end
 end

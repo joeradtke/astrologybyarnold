@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140927210220) do
+ActiveRecord::Schema.define(version: 20150203012027) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 20140927210220) do
     t.string   "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "longitude2"
   end
 
   create_table "line_items", force: true do |t|
@@ -184,6 +185,7 @@ ActiveRecord::Schema.define(version: 20140927210220) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "longitude2"
+    t.string   "house2"
   end
 
   create_table "planetsigns", force: true do |t|

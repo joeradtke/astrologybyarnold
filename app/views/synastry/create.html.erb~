@@ -26,3 +26,44 @@
   <strong>City2:</strong>
   <%= @birthplace2.city %>
 </p>
+<%=image_tag @image,:class=>"natal"%>
+<table width="65%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td><font color='#0000ff'><b> Planets 1 </b></font></td>
+<td><font color='#0000ff'><b> Longitude </b></font></td>
+<td><font color='#0000ff'><b> House<br>position 1 </b></font></td>
+<td><font color='#0000ff'><b> Planets 2 </b></font></td>
+<td><font color='#0000ff'><b> Longitude </b></font></td>
+<td><font color='#0000ff'><b> House<br>position 2 </b></font></td>
+</tr>
+<%=render partial: "planet", collection: @planets%>
+<tr>
+<td> &nbsp </td>
+<td> &nbsp </td>
+<td> &nbsp </td>
+<td> &nbsp </td>
+</tr>
+<tr>
+<td><font color='#0000ff'><b> Name </b></font></td>
+<td><font color='#0000ff'><b> Longitude 1</b></font></td>
+<td> &nbsp </td>
+<td><font color='#0000ff'><b> Longitude 2</b></font></td>
+<td> &nbsp </td>
+</tr>
+<%=render partial: "house",collection: @houses%>
+</table>
+<br /><br />
+<table width="40%" cellpadding="0" cellspacing="0" border="0">
+<tr>
+<td><font color='#0000ff'><b> Planet 1</b></font></td>
+<td><font color='#0000ff'><b> Aspect </b></font></td>
+<td><font color='#0000ff'><b> Planet 2</b></font></td>
+</tr>
+<tr><td colspan='4'>&nbsp;</td></tr>
+<%=render @aspects%>
+</table>
+<%=render @pageintro%>
+<%=render @pagehouse%>
+<%=render @planethouses%>
+<%=render @pageasp%>
+<%=render @aspecttexts%>

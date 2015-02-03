@@ -1,8 +1,7 @@
 <tr>
   <td><%=planet.name%></td>
   <td><%=planet.longitude%></td>
-  <td>&nbsp;</td>
-  <td><%=planet.house%></td>
+  <td><%=planet.house</td>
   <td><%=planet.name%></td>
   <td><%=planet.longitude2%></td>
   <td><%=planet.house2%></td>
