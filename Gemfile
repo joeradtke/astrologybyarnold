@@ -15,11 +15,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
-<<<<<<< HEAD
 gem 'font-awesome-rails'
-=======
 gem 'less-rails-fontawesome'
->>>>>>> navigation
 gem 'activeadmin',github:'gregbell/active_admin'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'devise'
@@ -50,7 +47,15 @@ gem 'spring',        group: :development
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'puma', '2.9.2'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-collection'
+  gem 'capistrano3-puma'
+  gem 'rvm1-capistrano3',require: false
+end
+gem 'capistrano3-nginx'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
