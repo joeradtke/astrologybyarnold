@@ -9,4 +9,9 @@ module ApplicationHelper
     end
     content_tag("div", attributes, &block)
   end
+
+  #returns an <li class="active">s if current path is path, else returns <li>
+  def active_li(path)
+    "active" if current_page?path
+  end
 end
