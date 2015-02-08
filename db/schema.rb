@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203012027) do
+ActiveRecord::Schema.define(version: 20150206235310) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -104,6 +104,17 @@ ActiveRecord::Schema.define(version: 20150203012027) do
 
   add_index "categories", ["slug"], name: "index_categories_on_slug", unique: true, using: :btree
 
+  create_table "composites", force: true do |t|
+    t.string   "name"
+    t.string   "date"
+    t.string   "city"
+    t.string   "name2"
+    t.string   "date2"
+    t.string   "city2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "friendly_id_slugs", force: true do |t|
     t.string   "slug",                      null: false
     t.integer  "sluggable_id",              null: false
@@ -186,6 +197,7 @@ ActiveRecord::Schema.define(version: 20150203012027) do
     t.datetime "updated_at"
     t.string   "longitude2"
     t.string   "house2"
+    t.string   "longitude3"
   end
 
   create_table "planetsigns", force: true do |t|

@@ -178,7 +178,7 @@ module DrawingFunctions
       i.text_anchor(Magick::StartAnchor)
       i.text(40+k*25,20+25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
       (k+1..13).each do |l|
-	#a=Aspect.new
+	a=Aspect.new
         q=0
         name=""
         da=(long[k].to_f-long[l].to_f).abs

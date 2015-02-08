@@ -353,4 +353,78 @@ module AstroFunctions
     end
     aspecttexts
   end
+
+  def gethouses(long,hc)
+    houses=[]
+    (0..11).each do |x|
+      (0..9).each do |y|
+	if x<11 && hc[x]<hc[x+1]
+	  if long[y]>=hc[x].to_f && long[y]<hc[x+1].to_f
+	    houses[y]=x
+          end
+	if x<11 && hc[x]>hc[x+1]
+	  if long[y]-360<hc[x+1].to_f || long[y]>hc[x].to_f
+	    houses[y]=x
+	  end
+	end
+   	end
+	if x==11 && hc[x]<hc[0]
+	  if long[y]>=hc[x].to_f && long[y]<hc[0].to_f 
+	    houses[y]=x
+	  end
+	end
+	if x==11 && hc[x]>hc[0]
+	  if (long[y]-360)<hc[0].to_f || long[y]>hc[x].to_f
+	    houses[y]=x
+	  end
+	end
+      end
+    end
+    houses
+  end
+
+  def getcompositecusps(hc,hc2)
+    hcx=[]
+    hc2x=[]
+    hc3x=[]
+    hc3=[]
+    (9..11).each do |i|
+      hcx[i-9]=hc[i]
+      hc2x[i-9]=hc2[i]
+    end
+    (0..8).each do |i|
+      hcx[i+3]=hc[i]
+      hc2x[i+3]=hc2[i]
+    end
+    (0..11).each do |i|
+      hc3x[i]=(hcx[i]+hc2x[i]).to_i/2
+      if (hc3x[i].to_i-hcx[i].to_i).abs>90 || (hc3x[i].to_i-hc2x[i].to_i).abs>90
+	hc3x[i]=hc3x[i]+180
+	if hc3x[i]>=360
+	  hc3x[i]=hc3x[i]-360
+	end
+	if i>=2
+	  if hc3x[i]-hc3x[i-1].abs>90 && (hc3x[i]-hc3x[i-1]).abs<270
+	    hc3x[i]=crunch(hc3x[i]+180)
+	  end
+	end
+      end
+      (0..8).each do |i|
+	hc3[i]="%0.3f"  % hc3x[i+3].to_f
+      end
+      (9..11).each do |i|
+	hc3[i]=sprintf("%.3f",hc3x[i-9].to_f)
+      end
+      hc3[11]=hc3[0]
+    end
+    hc3
+  end
+
+  def crunch(x)
+    if x>=0
+      y=x-((x/360)*360).floor
+    else
+      y=360+(x-(1+((x/360).floor)*360))
+    end
+  end
 end

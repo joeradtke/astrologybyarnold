@@ -146,7 +146,7 @@ module DrawingFunctions
   end
 
   def create_aspect_grid(image,long,hc)
-    pl_name=["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Neptune","Pluto","Chiron","Lilith","True Node","P. of Fortune","Vertex","Ascendant","Midheaven"]
+    pl_name=["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","Chiron","Lilith","True Node","P. of Fortune","Vertex","Ascendant","Midheaven"]
     signglyphs=[97,115,100,102,103,104,106,107,108,122,120,99]
     pglyphs=[81,87,69,82,84,89,85,73,79,80,77,96,141,60,109,90,88]
     asp_color=["#0000ff","#ff0000","#00ff00","#ff00ff","#00ffff","#ff7700"]

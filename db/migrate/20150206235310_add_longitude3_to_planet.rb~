@@ -1,0 +1,4 @@
+class AddLongitude3ToPlanet < ActiveRecord::Migration
+  def change
+  end
+end

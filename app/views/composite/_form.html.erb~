@@ -1,0 +1,13 @@
+<%= simple_form_for(@composite, url: synastry_create_path,:html=>{:class=>'form-horizontal'}) do |f| %>
+  <%=f.input :name, autofocus: true %>
+  <%=f.input :date,as: :datetime, start_year:1925,:label=>"Birth Date"%>
+  <%=f.input :city, :label=>"City" do%>
+  <%=f.select :city, Birthplace.all.map {|b| [b.city,b.id]}%>
+  <%end%>
+  <%=f.input :name2%>
+  <%=f.input :date2,as: :datetime,start_year:1925,:label=>"Second Birth Date"%>
+  <%=f.input :city2, :label=>"Second City" do%>
+  <%=f.select :city2, Birthplace.all.map {|b| [b.city,b.id]}%>
+  <%end%>
+  <%=f.submit%>
+<% end %>
