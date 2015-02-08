@@ -15,7 +15,7 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'astrologbyarnold.com', user: 'joe', roles: %w{web app db}, primary: true
+server 'astrologybyarnold.com', user: 'joe', roles: %w{web app db}, primary: true
 
 
 # Custom SSH Options
