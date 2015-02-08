@@ -159,13 +159,13 @@ module DrawingFunctions
     #draw the grid - horizontal lines
     (0..14).each do |k|
       i.stroke("black")
-      i.line(10,25*(k+1),10+25*(k+1),25*(k+1))
-      i.line(10,25*14,10+25*k,25*14)
+      i.line(10,25*(k),10+25*(k),25*(k))
+    #  i.line(10,25*15,10+25*k,25*15)
     end
     #draw the grid - vertical lines
     (1..15).each do |k|
-      i.line(10+25*k,25*15,10+25*k,25*k)
-      i.line(10,25*15,10,25)
+      i.line(10+25*k,25*14,10+25*k,25*k)
+      i.line(10,25*14,10,25)
     end
     #intiate aspect collection
     aspects=[]
@@ -176,7 +176,7 @@ module DrawingFunctions
       i.font("HamburgSymbols.ttf")
       i.font_size(20)
       i.text_anchor(Magick::StartAnchor)
-      i.text(40+k*25,20+25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
+      i.text(10+k*25,25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
       (k+1..13).each do |l|
 	a=Aspect.new
         q=0

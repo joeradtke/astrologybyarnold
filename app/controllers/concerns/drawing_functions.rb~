@@ -146,7 +146,7 @@ module DrawingFunctions
   end
 
   def create_aspect_grid(image,long,hc)
-    pl_name=["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Neptune","Pluto","Chiron","Lilith","True Node","P. of Fortune","Vertex","Ascendant","Midheaven"]
+    pl_name=["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","Chiron","Lilith","True Node","P. of Fortune","Vertex","Ascendant","Midheaven"]
     signglyphs=[97,115,100,102,103,104,106,107,108,122,120,99]
     pglyphs=[81,87,69,82,84,89,85,73,79,80,77,96,141,60,109,90,88]
     asp_color=["#0000ff","#ff0000","#00ff00","#ff00ff","#00ffff","#ff7700"]
@@ -159,12 +159,12 @@ module DrawingFunctions
     #draw the grid - horizontal lines
     (0..14).each do |k|
       i.stroke("black")
-      i.line(10,25*(k+1),10+25*(k+1),25*(k+1))
-      i.line(10,25*14,10+25*k,25*14)
+      i.line(10,25*(k),10+25*(k),25*(k))
+    #  i.line(10,25*15,10+25*k,25*15)
     end
     #draw the grid - vertical lines
     (1..15).each do |k|
-      i.line(10+25*k,25*15,10+25*k,25*k)
+      i.line(10+25*k,25*14,10+25*k,25*k)
       i.line(10,25*15,10,25)
     end
     #intiate aspect collection
@@ -176,7 +176,7 @@ module DrawingFunctions
       i.font("HamburgSymbols.ttf")
       i.font_size(20)
       i.text_anchor(Magick::StartAnchor)
-      i.text(40+k*25,20+25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
+      i.text(10+k*25,25*(k+1),pglyphs[k].chr(Encoding::UTF_8))
       (k+1..13).each do |l|
 	a=Aspect.new
         q=0
