@@ -21,6 +21,7 @@ gem 'devise'
 gem 'friendly_id'
 gem 'cancan'
 gem 'simple_form'
+gem 'rmagick'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
