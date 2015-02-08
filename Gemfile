@@ -15,6 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
+gem 'less-rails-fontawesome'
 gem 'activeadmin',github:'gregbell/active_admin'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'devise'

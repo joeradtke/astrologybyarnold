@@ -38,7 +38,7 @@
   </head>
   <body>
     <header class="header">
-      <%=image_tag('header.png', class:"img-responsive")%>
+      <%=image_tag('header2.png', class:"img-responsive")%>
     </header>
     <nav class="navbar navbar-inverse">
         <div class="navbar-header">
@@ -50,19 +50,19 @@
       </div>
       <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="<%='active' if current_page?(root_path)%>"><%= link_to "Home",root_path%></li>
-              <li class="<%='active' if current_page?(about_path)%>"><%= link_to "About",about_path%></li>
-              <li class="<%='active' if current_page?(contact_path)%>"><%= link_to "Contact",contact_path%></li>
+              <li class="<%=active_li(root_path)%>"><%= fa_link_to "home", "Home",root_path,class: "btn btn-default btn-xs"%></li>
+              <li class="<%=active_li(about_path)%>"><%=fa_link_to "info", "About",about_path,class: "btn btn-default btn-xs"%></li>
+              <li class="<%=active_li(contact_path)%>"><%= fa_link_to "envelope", "Contact",contact_path,class: "btn btn-default btn-xs"%></li>
 	      <%if user_signed_in?%>
-  	        <li class="<%='active' if current_page?(edit_user_registration_path)%>"><%=link_to 'Profile',edit_user_registration_path %></li>
-  	        <li><%=link_to "Logout",destroy_user_session_path, method: :delete%></li>
+  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", 'Profile',edit_user_registration_path,class: "btn btn-default btn-xs" %></li>
+  	        <li><%=fa_link_to "sign-out", "Logout",destroy_user_session_path, method: :delete,class: "btn btn-default btn-xs"%></li>
 	      <% else %>
-  	        <li class="<%='active' if current_page?(edit_user_registration_path)%>"><%=link_to "Register",new_user_registration_path%></li>
-  	        <li class="<%='active' if current_page?(new_user_session_path)%>"><%=link_to "Login",new_user_session_path%></li>
+  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", "Register",new_user_registration_path,class: "btn btn-default btn-xs"%></li>
+  	        <li class="<%=active_li(new_user_session_path)%>"><%=link_to "sign-in","Login",new_user_session_path,class: "btn btn-default btn-xs"%></li>
 	      <% end %>
-		<li><%=link_to "Astro",astro_path%></li>
+		<li class="<%=active_li(astro_path)%>"><%=fa_link_to "star-half-full", "Astro",astro_path,class: "btn btn-default btn-xs"%></li>
 	      <%if can? :update, @user %>
-	        <li><%=link_to "Admin",admin_root_path%></li>
+	        <li><%=link_to "Admin",admin_root_path,class: "btn btn-default btn-xs"%></li>
 	      <%end%>
             </ul>
           </div><!--/.nav-collapse -->
@@ -73,8 +73,8 @@
       <div class="row-fluid">
         <aside class="col-md-3 col">
           <div class="well sidebar-nav">
+	    <h3>Categories</h3>
             <ul class="nav nav-list">
-              <li class="nav-header">Categories</li>
 	      <%my_category_helper%>
  	      <%=render 'categories/index'%>
             </ul>
