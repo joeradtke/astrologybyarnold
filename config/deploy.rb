@@ -25,7 +25,7 @@ set :puma_init_active_record, true
 
 # Default value for :linked_files is []
 set :linked_files, %w{config/database.yml}
-set :rvm1_ruby_version, "2.1.2"
+set :rvm1_ruby_version, "2.1.5"
 
 # Default value for linked_dirs is []
  set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')

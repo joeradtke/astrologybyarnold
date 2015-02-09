@@ -43,6 +43,4 @@ namespace :deploy do
   after :deploy, "nginx:restart"
   after :deploy, "puma:restart" 
   desc 'Restart application'
-  end
-
 end
