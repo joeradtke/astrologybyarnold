@@ -50,19 +50,19 @@
       </div>
       <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="<%=active_li(root_path)%>"><%= fa_link_to "home", "Home",root_path,class: "btn btn-default btn-xs"%></li>
-              <li class="<%=active_li(about_path)%>"><%=fa_link_to "info", "About",about_path,class: "btn btn-default btn-xs"%></li>
-              <li class="<%=active_li(contact_path)%>"><%= fa_link_to "envelope", "Contact",contact_path,class: "btn btn-default btn-xs"%></li>
+              <li class="<%=active_li(root_path)%>"><%= fa_link_to "home", "Home",root_path%></li>
+              <li class="<%=active_li(about_path)%>"><%=fa_link_to "info", "About",about_path%></li>
+              <li class="<%=active_li(contact_path)%>"><%= fa_link_to "envelope", "Contact",contact_path%></li>
 	      <%if user_signed_in?%>
-  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", 'Profile',edit_user_registration_path,class: "btn btn-default btn-xs" %></li>
-  	        <li><%=fa_link_to "sign-out", "Logout",destroy_user_session_path, method: :delete,class: "btn btn-default btn-xs"%></li>
+  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", 'Profile',edit_user_registration_path %></li>
+  	        <li><%=fa_link_to "sign-out", "Logout",destroy_user_session_path, method: :delete%></li>
 	      <% else %>
-  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", "Register",new_user_registration_path,class: "btn btn-default btn-xs"%></li>
-  	        <li class="<%=active_li(new_user_session_path)%>"><%=link_to "sign-in","Login",new_user_session_path,class: "btn btn-default btn-xs"%></li>
+  	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", "Register",new_user_registration_path%></li>
+  	        <li class="<%=active_li(new_user_session_path)%>"><%=link_to "sign-in","Login",new_user_session_path%></li>
 	      <% end %>
-		<li class="<%=active_li(astro_path)%>"><%=fa_link_to "star-half-full", "Astro",astro_path,class: "btn btn-default btn-xs"%></li>
+		<li class="<%=active_li(astro_path)%>"><%=fa_link_to "star-half-full", "Astro",astro_path%></li>
 	      <%if can? :update, @user %>
-	        <li><%=link_to "Admin",admin_root_path,class: "btn btn-default btn-xs"%></li>
+	        <li><%=link_to "Admin",admin_root_path%></li>
 	      <%end%>
             </ul>
           </div><!--/.nav-collapse -->

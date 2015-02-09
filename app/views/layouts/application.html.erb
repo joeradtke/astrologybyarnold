@@ -55,7 +55,7 @@
               <li class="<%=active_li(contact_path)%>"><%= fa_link_to "envelope", "Contact",contact_path%></li>
 	      <%if user_signed_in?%>
   	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", 'Profile',edit_user_registration_path %></li>
-  	        <li><%=fa_link_to "sign-out", "Logout",destroy_user_session_path, method: :delete%></li>
+
 	      <% else %>
   	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", "Register",new_user_registration_path%></li>
   	        <li class="<%=active_li(new_user_session_path)%>"><%=link_to "sign-in","Login",new_user_session_path%></li>
