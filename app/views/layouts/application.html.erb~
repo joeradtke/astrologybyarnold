@@ -73,7 +73,7 @@
       <div class="row-fluid">
         <aside class="col-md-3 col">
           <div class="well sidebar-nav">
-	    <h3>Categories</h3>
+	    <h2>CATEGORIES</h2>
             <ul class="nav nav-list">
 	      <%my_category_helper%>
  	      <%=render 'categories/index'%>
