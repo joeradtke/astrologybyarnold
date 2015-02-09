@@ -58,7 +58,7 @@
   	        <li><%=fa_link_to "sign-out", "Logout",destroy_user_session_path, method: :delete%></li>
 	      <% else %>
   	        <li class="<%=active_li(edit_user_registration_path)%>"><%=fa_link_to "user", "Register",new_user_registration_path%></li>
-  	        <li class="<%=active_li(new_user_session_path)%>"><%=link_to "sign-in","Login",new_user_session_path%></li>
+  	        <li class="<%=active_li(new_user_session_path)%>"><%=fa_link_to "sign-in","Login",new_user_session_path%></li>
 	      <% end %>
 		<li class="<%=active_li(astro_path)%>"><%=fa_link_to "star-half-full", "Astro",astro_path%></li>
 	      <%if can? :update, @user %>
