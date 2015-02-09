@@ -1,3 +1,8 @@
+User.create!([
+  {email: "joeradtke@yahoo.com", encrypted_password: "$2a$10$0dJhggGmKn3Tj78A8qqKdepB7uYvS6e8QFCqiUHciJaSMVdsc5OpG", username: "joeradtke", firstname: "Joseph", lastname: "Radtke", role: "admin", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 4, current_sign_in_at: "2015-01-31 01:09:17", last_sign_in_at: "2015-01-29 15:42:48", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"},
+  {email: "arnold@radtke.in", encrypted_password: "$2a$10$yAbie0SlnQzOrAT0gP79OOvBBQzzBYpA.Jdc5ua69sckSn1iUK1ey", username: "arnold", firstname: "Arnold", lastname: "Radtke", role: "member", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-07-15 22:08:54", last_sign_in_at: "2014-07-15 22:08:54", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"},
+  {email: "marie@radtke.in", encrypted_password: "$2a$10$mtDXrkhyrSYDHLj9LFuvyOnJ.vxcVtW7W9y/J/xYuQKYoNOEXNJ.S", username: "marie", firstname: "Marie", lastname: "Radtke", role: "member", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2014-07-15 22:09:22", last_sign_in_at: "2014-07-15 22:09:22", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"}
+])
 Category.create!([
   {name: "Charts", slug: "charts"},
   {name: "Spells", slug: "spells"}
