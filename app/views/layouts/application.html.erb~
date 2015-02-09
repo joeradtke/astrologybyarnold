@@ -69,8 +69,8 @@
     </nav>
 
     <div class="container-fluid">
-      <div class="row-fluid">
-        <aside class="col-md-3 col">
+      <div class="row-fluid col-wrap">
+        <aside class="col-md-3 colh">
           <div class="well sidebar-nav">
 	    <h2>CATEGORIES</h2>
             <ul class="nav nav-list">
@@ -86,7 +86,7 @@
 	  <p class="alert"><%=alert%></p>
           <%= yield %>
         </div>
-        <aside class="col-md-3 col">
+        <aside class="col-md-3 colh col">
 	  <%if user_signed_in?%>
 	    Logged in as <%=current_user.username%>
 	  <%else%>
@@ -95,7 +95,8 @@
       	</aside>
       </div><!--/row-->
 
-      <footer>
+      <footer class="footer">
+        <%=image_tag('footer.png', class:"img-responsive", height="50")%>
       </footer>
 
     </div> <!-- /container -->

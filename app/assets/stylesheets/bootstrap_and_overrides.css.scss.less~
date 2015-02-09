@@ -11,8 +11,12 @@
   border-right:2px dashed gray;
   border-left:2px dashed gray;
 }
-.btn a {
+a.btn {
   text-decoration:none;
+}
+.footer {
+  height:50px;
+  overflow:hidden;
 }
 // Set the correct sprite paths
 @iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
